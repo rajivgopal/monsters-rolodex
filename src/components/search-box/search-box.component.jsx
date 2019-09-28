@@ -1,4 +1,7 @@
 import React from "react";
+import { connect } from "react-redux";
+
+import * as actions from "../../redux/actions";
 import "./search-box.styles.css";
 
 const SearchBox = ({ placeHolder, handleChange }) => {
@@ -12,4 +15,12 @@ const SearchBox = ({ placeHolder, handleChange }) => {
   );
 };
 
-export default SearchBox;
+const d = (dispatch, ownProps) => {
+  return {
+    handleChange: e => dispatch(actions.searchData(e.target.value))
+  };
+};
+export default connect(
+  null,
+  d
+)(SearchBox);
